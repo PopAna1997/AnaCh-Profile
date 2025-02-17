@@ -16,16 +16,16 @@ const App: React.FC = () => {
                 <div className='footer'></div>
             </div>
             <div className='skillsContainer'>
-                <div className='spfxCard'>
+                <div className='card spfxCard'>
                     <span>spfx card</span>
                 </div>
-                <div className='dotnetCard'>
+                <div className='card dotnetCard'>
                     <span>dotnet Card</span>
                 </div>
-                <div className='reactCard'>
+                <div className='card reactCard'>
                     <span>react Card</span>
                 </div>
-                <div className='sharepointCard'>
+                <div className='card sharepointCard'>
                     <span>sharepoint card</span>
                 </div>
             </div>
