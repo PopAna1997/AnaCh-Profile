@@ -1,4 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import SkillCard from "./common/components/skill-card/SkillCard";
 
@@ -12,7 +15,6 @@ import sharepointLogo from "./assets/sharepoint-logo.png";
 
 const App: React.FC = () => {
 
-    const [isOpen, setIsOpen] = useState<boolean>(false);
     const slide1 = useRef<any>(null);
     const slide2 = useRef<any>(null);
 
@@ -23,11 +25,10 @@ const App: React.FC = () => {
         { skill: 'sharepoint', img: sharepointLogo },
     ]
 
-    const onArrowClick = () => {
-        setIsOpen(true);
+    const onArrowRightClick = () => {
 
         if (slide1.current) {
-            slide1.current.style.transform = "translateX(-100%)";
+            slide1.current.style.transform = "translateX(-70%)";
         }
 
         if (slide2.current) {
@@ -35,30 +36,40 @@ const App: React.FC = () => {
         }
     }
 
+    const onArrowLeftClick = () => {
+        
+        if (slide1.current) {
+            slide1.current.style.transform = "translateX(0)";
+        }
+
+        if (slide2.current) {
+            slide2.current.style.transform = "translateX(70%)";
+        }
+    }
+
     return (
         <div className={styles.mainContainer}>
-            <div ref={slide1} className={`${styles.containerSlide} profileApp`}>
-                <div className='profileCard'>
-                    <div className='header'>
-                        <img className='userImg' src={userLogo} />
-                        <p>User Name</p>
-                    </div>
-                    <div className='body'></div>
-                    <div className='footer'></div>
+            <div className={styles.userProfileDetails}>
+                <div className={styles.header}>
+                    <img className={styles.userImg} src={userLogo} />
+                    <p>Ana Cherecheș</p>
+                    <p>Full Stack Developer</p>
                 </div>
-                <div className='skillsContainer'>
+                <div className={styles.body}></div>
+                <div className={styles.footer}></div>
+            </div>
+            <div className={styles.slidesContainer}>
+                <div ref={slide1} className={`${styles.slide} ${styles.skillsSlide}`}>
                     {
                         userSkills.map((skill, index) => {
-                            return <SkillCard key={index} title={skill.skill} imgSrc={skill.img} onArrowClick={onArrowClick} />
+                            return <SkillCard key={index} title={skill.skill} imgSrc={skill.img} onArrowClick={onArrowRightClick} />
                         })
                     }
                 </div>
-                {isOpen && <div className='skillDetails'>
-                    <span>Details</span>
-                </div>}
-            </div>
-            <div ref={slide2} className={`${styles.containerSlide} skillDescriptionContainer`}>
-                <span>hello, this is skill container</span>
+                <div ref={slide2} className={`${styles.slide} ${styles.descriptionSlide}`}>
+                    <FontAwesomeIcon icon={faArrowLeft} onClick={onArrowLeftClick} />
+                    <span>hello, this is skill container</span>
+                </div>
             </div>
         </div>
     )

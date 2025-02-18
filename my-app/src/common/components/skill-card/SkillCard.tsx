@@ -10,7 +10,7 @@ const SkillCard: React.FC<ISkillCardProps> = (props) => {
     return <div className="cardContainer">
         <img className="cardImg" src={props.imgSrc} />
         <span className="cardTitle">{props.title}</span>
-        <FontAwesomeIcon icon={faArrowRight} onClick={props.onArrowClick}/>
+        <FontAwesomeIcon icon={faArrowRight} onClick={props.onArrowClick} />
     </div>
 }
 
